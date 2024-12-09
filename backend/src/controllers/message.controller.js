@@ -43,9 +43,9 @@ export const sendMessage = async (req, res) => {
 
     let imageUrl;
 
-    if (imageUrl) {
+    if (image) {
       const uploadResponse = await cloudinary.uploader.upload(image);
-      imageUrl = uploadResponse;
+      imageUrl = uploadResponse.secure_url
     }
 
     const newMessage = new Message({
@@ -55,12 +55,12 @@ export const sendMessage = async (req, res) => {
       image: imageUrl,
     });
 
-    await newMessage.save;
+    await newMessage.save();
 
     // todo: implement socket.io for real time chatting
     res.status(201).json(newMessage);
   } catch (error) {
-    console.log("Error in sendMessage controller", error.message);
+    console.log("Error in sendMessage controller", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
