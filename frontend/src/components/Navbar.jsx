@@ -1,6 +1,5 @@
 import React from 'react'
-import Lottie from 'react-lottie'
-import chatLogo from '../assets/chat.json'
+
 import { useAuthStore } from '../store/useAuthStore'
 import { Link } from 'react-router-dom'
 import { LogOut, MessageSquare, Settings, User } from 'lucide-react'
